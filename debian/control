@@ -1,0 +1,23 @@
+Source: mount-gui
+Section: admin
+Priority: optional
+Maintainer: Your Name <you@example.com>
+Build-Depends: debhelper-compat (= 13),
+               cmake,
+               pkg-config,
+               qt6-base-dev,
+               libmtp-dev,
+               libgl-dev
+Standards-Version: 4.6.2
+Homepage: https://github.com/kirillnow/mount-gui
+Rules-Requires-Root: no
+
+Package: mount-gui
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, polkitd | policykit-1
+Recommends: nfs-common, cifs-utils, smbclient, avahi-utils, nmap
+Suggests: jmtpfs, sshfs
+Description: graphical tool to mount disks, network shares and MTP devices
+ Mount-GUI quickly mounts anything, anywhere, with any options. It can
+ discover NFS and SMB/CIFS shares on the local network, mount MTP devices,
+ and create fstab entries and systemd mount units.
