@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+# Uses ">" instead of tabs so this file survives copy/paste in a web editor.
+.RECIPEPREFIX = >
+
+%:
+> dh $@
+
+override_dh_auto_configure:
+> dh_auto_configure -- -DCMAKE_BUILD_TYPE=Release
+
+# Remove upstream's polkit rule that lets any user run mount-gui as root
+# without a password. Without it, you get the normal password prompt.
+override_dh_auto_install:
+> dh_auto_install
+> rm -f debian/mount-gui/etc/polkit-1/rules.d/mount-gui.rules
+> rm -f debian/mount-gui/usr/share/polkit-1/rules.d/mount-gui.rules
